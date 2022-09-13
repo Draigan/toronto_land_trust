@@ -1,7 +1,6 @@
 //MODULE SYNOPSIS
 /* 
-1. Takes todays list and eliminates most of the entries on the list based on postal code.  This isn't an exact way of narrowing
-down  the list, we will need to refine later.
+1. Takes todays list and eliminates most of the entries on the list based on postal code. Which is a crude narrowing of the list. Just to remove obvious entries.
 
 2. Maps easier to read objects onto the list.
 
@@ -32,8 +31,7 @@ sort(){
 
         const oldList = cleanUpList(yesterdaysList);
         const newList = cleanUpList(todaysList);
-        const dailyRelevantListings = [];
-        
+               
         function
         cleanUpList(list)
         {
@@ -123,6 +121,7 @@ sort(){
             {
               for (let i = 0; i < newList.length; i++)
                 {
+                    //checks to see if listings long and lat falls within ward4's geojson
                 if (d3.geoContains(geoWard,newList[i].COORDINATES) == false) 
                 {
                      newList.splice(i,1)
@@ -138,8 +137,8 @@ sort(){
 
 export default sort;
 
-/*                                                                                      Failed attempt do to http module not parsing my json properly? something about jsonP? Very annoying that fetch worked but https
-                                                                                            module did not.                                 
+/*                                                                                      Failed attempt do to http module not parsing my json properly? something about jsonP? Very annoying
+ that fetch worked but https  module did not.                                 
 const promiseArray = [];
 
 
