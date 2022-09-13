@@ -1,8 +1,8 @@
 import fetch from 'node-fetch';
 import * as d3  from "d3-geo";
-import geoWard from './geoward4.json' assert {type: 'json'}
-import yesterdaysList from "./yesterdays-list.json" assert {type: 'json'}
-import todaysList from "./todays-list.json" assert {type: 'json'}
+import geoWard from `./geoward4.json` assert { type: `json` };
+/* import yesterdaysList from "./yesterdays-list.json" assert {type: 'json'}
+import todaysList from "./todays-list.json" assert {type: 'json'} */
 
 const postalCode = [ 'M6K', 'M6H', 'M6P', 'M6R', 'M6J', 'M5X', 'M5J', 'M5K', 'M6L', 'M3C', 'M5H'];
 
