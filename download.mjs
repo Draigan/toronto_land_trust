@@ -3,16 +3,18 @@ import https from "https";
 
 
 
-// real one                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 const url = "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/0aa7e480-9b48-4919-98e0-6af7615b7809/resource/043f9e44-ed62-4b4e-96d8-bdfcea27ec91/download/Development%20Applications%20Data.json"
-const url = "https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_4x3.jpg"
+//const url = "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/0aa7e480-9b48-4919-98e0-6af7615b7809/resource/043f9e44-ed62-4b4e-96d8-bdfcea27ec91/download/Development%20Applications%20Data.json" 
+const url = "https://r4.wallpaperflare.com/wallpaper/500/442/354/outrun-vaporwave-hd-wallpaper-4bb67cfd2391ef49d5148b291dcc5cf0.jpg";
 
  export function
-energize(fileName) { return new Promise((resolve,reject)=>
-    {
+energize(fileName) { 
+
+    return new Promise( (resolve,reject) => {
+
         const req = https.get(url, (res) => 
             {
-                var fileStream = fs.createWriteStream(`./${fileName}.jpg`)
-                res.pipe(fileStream)
+                var fileStream = fs.createWriteStream(`./${fileName}.jpg`);
+                res.pipe(fileStream);
             
                 fileStream.on("error", (err) =>
                 {
@@ -20,7 +22,7 @@ energize(fileName) { return new Promise((resolve,reject)=>
                     console.log("error downloading to filestream")
                     console.error(err);
                     //Send an email to note of the error
-                })
+                });
             
             
             
@@ -28,21 +30,61 @@ energize(fileName) { return new Promise((resolve,reject)=>
                 {
                     
                  
-                    console.log("Done!")
-                    fileStream.close(() => resolve("passed"));
-                })
+                    console.log(`Download of ${fileName} Complete!`)
+                    fileStream.close(resolve);
+                   
+                });
             
             
             });
+
+   
             
             req.on("error", (err) =>
             {
             console.log("error downloading file");
             console.error(err);
             
-            });} 
+            });
 
-    )} 
-export default energize
+    });
+
+
+    } 
+
+    export default energize;
+/* 
+    function
+    myPromise()
+    {
+        return new Promise((resolve,reject) => {
+            if (true == false) 
+            {
+               return reject();
+            }
+            resolve("IM PASSED BITCHES")
+        })
+    }
+
+    function
+    myPromise2()
+    {
+        return new Promise((resolve,reject) => {
+            if (true == false) 
+            {
+               return reject();
+            }
+            setTimeout(()=>{resolve("IM PASSED AGAIN BITCHES")}, 6000)
+        })
+    }
+
+
+    // First the pic is downloaded. THen myPromise is executed, then myPromise2 is executed.
+
+    energize("newpic").then(()=> {return myPromise()}).then((text) => {console.log(text);
+        return myPromise2();
+    
+    }).then(text => console.log(text)) */
+
 
 /* myPromise("dog").then(()=>console.log('it worked'))  */

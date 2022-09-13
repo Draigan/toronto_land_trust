@@ -1,7 +1,16 @@
-import * as download from "./download.mjs"
+ import * as download from "./download.mjs" 
 import * as sorter from "./sorter.mjs"
 
-download.energize("todays-list")
-.then(console.log('hey'))
+
+
+async function
+mainFunction()
+{
+    const downloaded= await download.energize('somerandomjson');
+    const sort = await sorter.sort();
+};
+
+mainFunction();
+
 
 
