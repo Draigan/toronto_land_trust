@@ -1,8 +1,10 @@
 import fetch from 'node-fetch';
 import * as d3  from "d3-geo";
-import geoWard from `./geoward4.json` assert { type: `json` };
-/* import yesterdaysList from "./yesterdays-list.json" assert {type: 'json'}
-import todaysList from "./todays-list.json" assert {type: 'json'} */
+import geoWard from "./geoward4.json" assert { type: "json" };
+import yesterdaysList from "./yesterdays-list.json" assert {type: "json"}
+import todaysList from "./todays-list.json" assert {type: 'json'} 
+import https from "https";
+
 
 const postalCode = [ 'M6K', 'M6H', 'M6P', 'M6R', 'M6J', 'M5X', 'M5J', 'M5K', 'M6L', 'M3C', 'M5H'];
 
@@ -43,6 +45,7 @@ cleanUpList(list)
                 "STREET_TYPE": item.STREET_TYPE,
                 "LON" : null,
                 "LAT" : null,
+                "COORDINATES" : []
             }
          }
          )
@@ -66,29 +69,78 @@ for (let i = 0; i < newList.length; i++)
 getRidOfCopies();
 
 
-  for (let i = 0; i< newList.length; i++)
+const promiseArray = [];
+
+    const httpRequest = (url,index) => 
+    {
+        return new Promise((resolve,reject) =>
+        {
+
+            fetch(url).then( response => response.json())
+            .then( json => {
+        
+                //Adding lon and lat to my list item
+       
+                newList[index].LON = json[0].lon;
+                newList[index].LAT = json[0].lat;
+                newList[index].COORDINATES.push(json.LON, json.LAT);
+          
+                resolve();
+        }).catch(reject);
+    });
+};
+
+for (let i = 0; i< newList.length; i++)
 {
-    const url = `https://nominatim.openstreetmap.org/search?q=${newList[i].STREET_NUM}+${newList[i].STREET_NAME}+${newList[i].STREET_TYPE},+toronto&format=json`;
+let url = `https://nominatim.openstreetmap.org/search?q=${newList[i].STREET_NUM}+${newList[i].STREET_NAME}+${newList[i].STREET_TYPE},+toronto&format=json`;
 
-    fetch(url).then( response => response.json())
-    .then( json => {
-
-        //Adding lon and lat to my list item
-        newList[i].LON = json[i].lon;
-        newList[i].LAT = json[i].lat 
-        let coordinates = [newList[i].LON, newList[i].LAT];
-
-
-            //Checking to see if listing falls within ward 4 geojson. 
-         if (d3.geoContains(geoWard, coordinates)) 
-         { 
-            dailyRelevantListings.push(newList[i]);
-        }
-        console.log('DAILY LISTINGS');
-        console.log(dailyRelevantListings);
-    }).catch(err => console.error(err + 'WARNING WILL ROBINSON! WARNING!'));
+   setTimeout( () => {promiseArray.push(httpRequest(url,i))}, 3000 * i);
 
 }
+setTimeout( () => {Promise.all(promiseArray).then(()=> {console.log(newList)})}, newList.length * 3001)
 
+
+/*                                                                                      Failed attempt do to http module not parsing my json properly? something about jsonP? Very annoying that fetch worked but https
+                                                                                            module did not.                                 
+const promiseArray = [];
+
+
+
+    const httpRequest = (url,index) => 
+    {
+        return new Promise((resolve,reject) =>
+        {
+            https.get(url, res => {
+
+                if ( 1 == 2 ) { return reject;}
+
+                let data = "";
+
+                res.on("data", chunk => {
+                    data += chunk;
+                });
+             
+                res.on("end", () => {
+                    let JSONdata = JSON.parse(data);
+                    console.log(JSONdata);
+                    newList[index].LON = JSONdata.LON;
+                    newList[index].LAT = JSONdata.LAT;
+                    newList[index].COORDINATES.push(JSONdata.LON, JSONdata.LAT);
+                    resolve();
+                })
+            
+            })
+        })
+    }
+
+    for (let i = 0; i< newList.length; i++)
+    {
+  let url = `https://nominatim.openstreetmap.org/search?q=${newList[i].STREET_NUM}+${newList[i].STREET_NAME}+${newList[i].STREET_TYPE},+toronto&format=json`;
+    
+       promiseArray.push(httpRequest(url,i))
+    
+    }
+    Promise.all(promiseArray).then(()=> {console.log('thishappenedafter')})
+ */
 
 
