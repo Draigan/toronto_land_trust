@@ -50,12 +50,13 @@ sort(){
                  {
                     return {
                         'APPLICATION_NUMBER' : item.APPLICATION_NUMBER,
+                        'DESCRIPTION' : item.DESCRIPTION,
                         'ID': item._id,
                         'POSTAL' : item.POSTAL,
                         "STATUS" : item.STATUS,
                         'APPLICATION_TYPE' : item.APPLICATION_TYPE,
                         'DATE_SUBMITTED' : item.DATE_SUBMITTED,
-        
+                        
                         'REFERENCE_FILE_NUMBER': item.REFERENCE_FILE_NUMBER,
                         'HEARING_DATE': item.HEARING_DATE,
                   
