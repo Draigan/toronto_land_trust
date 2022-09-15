@@ -10,10 +10,11 @@ new entries.
 import fetch from 'node-fetch';
 import * as d3  from "d3-geo";
 import geoWard from "./geoward4.json" assert { type: "json" };
-import yesterdaysList from "./yesterdays-list.json" assert {type: "json"}
-import todaysList from "./todays-list.json" assert {type: 'json'} 
+import yesterdaysList from "./yesterdays-list.json" assert {type: "json"};
+import todaysList from "./todays-list.json" assert {type: 'json'}; 
 import https from "https";
 import { resolve } from 'path';
+import pastItems from "./pastItems.json" assert {type:"json"};
 
 export function 
 sort(){
@@ -26,8 +27,9 @@ sort(){
         const postalCode = [ 'M6K', 'M6H', 'M6P', 'M6R', 'M6J', 'M5X', 'M5J', 'M5K', 'M6L', 'M3C', 'M5H'];
 
         const oldList = cleanUpList(yesterdaysList);
-        const newList = cleanUpList(todaysList);
-        const todaysChangedStatusList = cleanUpList(todaysList);
+        const newApplicationList = cleanUpList(todaysList);
+        const newStatusList = cleanUpList(todaysList);
+        const refinedNewStatusList = [];
                
         function
         cleanUpList(list)
@@ -50,7 +52,7 @@ sort(){
                         'APPLICATION_NUMBER' : item.APPLICATION_NUMBER,
                         'ID': item._id,
                         'POSTAL' : item.POSTAL,
-        
+                        "STATUS" : item.STATUS,
                         'APPLICATION_TYPE' : item.APPLICATION_TYPE,
                         'DATE_SUBMITTED' : item.DATE_SUBMITTED,
         
@@ -69,22 +71,32 @@ sort(){
                 }
          
 
-    
-/*         function
+                
+
+        function
         findChangedStatus()
         {
-            for (let item of pastItems)
+            for (let i = 0; i < pastItems.length; i ++)
             {
-            for (let i = todaysChangedStatusList.length - 1; i > 0; i--)
+            for (let j = newStatusList.length - 1;  j > 0; j--)   //working backwards to stop at the most recent application number
             {
-                if (item.APPLICATION_NUMBER ==)
+                if (pastItems[i].APPLICATION_NUMBER == newStatusList[j].APPLICATION_NUMBER)
                 {
-
+                    if (pastItems[i].STATUS != newStatusList[j].STATUS)
+                    {
+                        refinedNewStatusList.push(newStatusList[j]);
+                        break;
+                    }
                 }
             }
         }
-        } */
+        } 
+
+        findChangedStatus();
+
                 
+
+        
      function
         getRidOfCopies(originalList,modifiedList)
         {
@@ -99,23 +111,8 @@ sort(){
             }
         }
         }
-        getRidOfCopies(oldList,newList); 
+        getRidOfCopies(oldList,newApplicationList); 
         
-/*         function
-        getRidOfCopies()
-        {
-        for (let i = 0; i < newList.length; i++)
-        {
-            for (let oldItem of oldList)
-            {
-                if (newList[i].APPLICATION_NUMBER == oldItem.APPLICATION_NUMBER ){
-                    newList.splice(i,1);
-            } 
-        
-            }
-        }
-        }
-        getRidOfCopies(); */
         
         
         const promiseArray = [];
@@ -130,44 +127,45 @@ sort(){
                 
                         //Adding lon and lat to my list item
                
-                        newList[index].LON = json[0].lon;
-                        newList[index].LAT = json[0].lat;
-                        newList[index].COORDINATES.push(json[0].lon, json[0].lat);
+                        newApplicationList[index].LON = json[0].lon;
+                        newApplicationList[index].LAT = json[0].lat;
+                        newApplicationList[index].COORDINATES.push(json[0].lon, json[0].lat);
                   
                         resolve();
                 }).catch(reject);
             });
         };
         
-        for (let i = 0; i< newList.length; i++)
+        for (let i = 0; i< newApplicationList.length; i++)
         {
-        let url = `https://nominatim.openstreetmap.org/search?q=${newList[i].STREET_NUM}+${newList[i].STREET_NAME}+${newList[i].STREET_TYPE},+toronto&format=json`;
+        let url = `https://nominatim.openstreetmap.org/search?q=${newApplicationList[i].STREET_NUM}+${newApplicationList[i].STREET_NAME}+${newApplicationList[i].STREET_TYPE},+toronto&format=json`;
         
            setTimeout( () => {promiseArray.push(httpRequest(url,i))}, 3000 * i);
         
         }
         setTimeout( () => {Promise.all(promiseArray).then(()=> 
             {
-              for (let i = 0; i < newList.length; i++)
+              for (let i = 0; i < newApplicationList.length; i++)
                 {
                     //checks to see if listings long and lat falls within ward4's geojson
-                if (d3.geoContains(geoWard,newList[i].COORDINATES) == false) 
+                if (d3.geoContains(geoWard,newApplicationList[i].COORDINATES) == false) 
                 {
-                     newList.splice(i,1)
+                     newApplicationList.splice(i,1)
                 }; 
             } 
               
      
-            console.log(newList)
-                 resolve(newList);
+                let listArray = [];
+                listArray.push(newApplicationList, refinedNewStatusList);
+                 resolve(listArray);
         
-            })}, newList.length * 3001)
+            })}, newApplicationList.length * 3001)
     });
 
 }
 
 export default sort;
-sort();
+
 
 /*                                                                                      Failed attempt do to http module not parsing my json properly? something about jsonP? Very annoying
  that fetch worked but https  module did not.                                 
