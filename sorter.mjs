@@ -1,14 +1,10 @@
 //MODULE SYNOPSIS
 /* 
 1. Takes todays list and eliminates most of the entries on the list based on postal code. Which is a crude narrowing of the list. Just to remove obvious entries.
-
 2. Maps easier to read objects onto the list.
-
 3. Compares todays list to yesterdays list and eliminates any entries from the list that are contained in both. newList now only contains
 new entries.
-
 4. Asks an API for longitude and latitude of every item on the refined list
-
 5. Checks that the coordinates of a list item falls within the geojson shape of torontos ward 4 and eliminates it from the list if not.
  */
 import fetch from 'node-fetch';
@@ -128,6 +124,7 @@ sort(){
                 }; 
             } 
                 console.log(newList);
+                console.log(todaysList)
           resolve();
         
             })}, newList.length * 3001)
@@ -136,23 +133,18 @@ sort(){
 }
 
 export default sort;
+sort();
 
 /*                                                                                      Failed attempt do to http module not parsing my json properly? something about jsonP? Very annoying
  that fetch worked but https  module did not.                                 
 const promiseArray = [];
-
-
-
     const httpRequest = (url,index) => 
     {
         return new Promise((resolve,reject) =>
         {
             https.get(url, res => {
-
                 if ( 1 == 2 ) { return reject;}
-
                 let data = "";
-
                 res.on("data", chunk => {
                     data += chunk;
                 });
@@ -169,7 +161,6 @@ const promiseArray = [];
             })
         })
     }
-
     for (let i = 0; i< newList.length; i++)
     {
   let url = `https://nominatim.openstreetmap.org/search?q=${newList[i].STREET_NUM}+${newList[i].STREET_NAME}+${newList[i].STREET_TYPE},+toronto&format=json`;
@@ -179,5 +170,3 @@ const promiseArray = [];
     }
     Promise.all(promiseArray).then(()=> {console.log('thishappenedafter')})
  */
-
-
