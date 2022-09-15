@@ -27,6 +27,7 @@ sort(){
 
         const oldList = cleanUpList(yesterdaysList);
         const newList = cleanUpList(todaysList);
+        const todaysChangedStatusList = cleanUpList(todaysList);
                
         function
         cleanUpList(list)
@@ -67,8 +68,40 @@ sort(){
                  )
                 }
          
+
+    
+/*         function
+        findChangedStatus()
+        {
+            for (let item of pastItems)
+            {
+            for (let i = todaysChangedStatusList.length - 1; i > 0; i--)
+            {
+                if (item.APPLICATION_NUMBER ==)
+                {
+
+                }
+            }
+        }
+        } */
+                
+     function
+        getRidOfCopies(originalList,modifiedList)
+        {
+        for (let i = 0; i < modifiedList.length; i++)
+        {
+            for (let item of originalList)
+            {
+                if (modifiedList[i].APPLICATION_NUMBER == item.APPLICATION_NUMBER ){
+                    modifiedList.splice(i,1);
+            } 
         
-        function
+            }
+        }
+        }
+        getRidOfCopies(oldList,newList); 
+        
+/*         function
         getRidOfCopies()
         {
         for (let i = 0; i < newList.length; i++)
@@ -82,7 +115,7 @@ sort(){
             }
         }
         }
-        getRidOfCopies();
+        getRidOfCopies(); */
         
         
         const promiseArray = [];
@@ -123,9 +156,10 @@ sort(){
                      newList.splice(i,1)
                 }; 
             } 
-                console.log(newList);
-                console.log(todaysList)
-          resolve();
+              
+     
+            console.log(newList)
+                 resolve(newList);
         
             })}, newList.length * 3001)
     });
