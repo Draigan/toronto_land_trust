@@ -4,7 +4,9 @@ import https from "https";
 
 
 const url = "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/0aa7e480-9b48-4919-98e0-6af7615b7809/resource/043f9e44-ed62-4b4e-96d8-bdfcea27ec91/download/Development%20Applications%20Data.json" 
-//const url = "https://r4.wallpaperflare.com/wallpaper/500/442/354/outrun-vaporwave-hd-wallpaper-4bb67cfd2391ef49d5148b291dcc5cf0.jpg";
+
+//testing URL
+//const url = "https://doc-0c-80-docs.googleusercontent.com/docs/securesc/37pit3impsiatvl2j01jjn33s4u7qstq/l8h4out1b66dnb80sv7ouqfet7k2sgk4/1663357650000/01967764509661569759/01967764509661569759/1QcLnVL0ITNw0rFhsOR8eIEIUlbgQIPp7?e=download&authuser=0&nonce=k2fel4bh6ung8&user=01967764509661569759&hash=eioes0f53r89ubi3rcd1igocgbier9od";
 
  export function
 energize(fileName) { 
@@ -13,7 +15,7 @@ energize(fileName) {
 
         const req = https.get(url, (res) => 
             {
-                var fileStream = fs.createWriteStream(`./${fileName}.jpg`);
+                var fileStream = fs.createWriteStream(`./${fileName}.json`);
                 res.pipe(fileStream);
             
                 fileStream.on("error", (err) =>
@@ -51,6 +53,7 @@ energize(fileName) {
 
 
     } 
+
 
     export default energize;
 /* 

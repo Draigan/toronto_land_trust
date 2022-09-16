@@ -158,6 +158,8 @@ sort(){
      
                 let listArray = [];
                 listArray.push(newApplicationList, refinedNewStatusList);
+                console.log(newApplicationList)
+                console.log(refinedNewStatusList)
                  resolve(listArray);
         
             })}, newApplicationList.length * 3001)
@@ -166,7 +168,7 @@ sort(){
 }
 
 export default sort;
-
+sort();
 
 /*                                                                                      Failed attempt do to http module not parsing my json properly? something about jsonP? Very annoying
  that fetch worked but https  module did not.                                 
