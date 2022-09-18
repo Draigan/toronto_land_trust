@@ -1,12 +1,15 @@
 import fs from "fs";
 import https from "https";
+import { mailError } from "./mailer.mjs";
+import todaysList from "./todays-list.json" assert {type:"json"};
+
 
 
 
 const url = "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/0aa7e480-9b48-4919-98e0-6af7615b7809/resource/043f9e44-ed62-4b4e-96d8-bdfcea27ec91/download/Development%20Applications%20Data.json" 
 
 //testing URL
-//const url = "https://doc-0c-80-docs.googleusercontent.com/docs/securesc/37pit3impsiatvl2j01jjn33s4u7qstq/l8h4out1b66dnb80sv7ouqfet7k2sgk4/1663357650000/01967764509661569759/01967764509661569759/1QcLnVL0ITNw0rFhsOR8eIEIUlbgQIPp7?e=download&authuser=0&nonce=k2fel4bh6ung8&user=01967764509661569759&hash=eioes0f53r89ubi3rcd1igocgbier9od";
+//const url = "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg";
 
  export function
 energize(fileName) { 
@@ -15,14 +18,17 @@ energize(fileName) {
 
         const req = https.get(url, (res) => 
             {
+                console.log('downloading...')
                 var fileStream = fs.createWriteStream(`./${fileName}.json`);
                 res.pipe(fileStream);
+                
             
                 fileStream.on("error", (err) =>
                 {
                     reject(new Error('someting done goofed'));
                     console.log("error downloading to filestream")
                     console.error(err);
+                    mailError(err);
                     //Send an email to note of the error
                 });
             
@@ -31,10 +37,11 @@ energize(fileName) {
                 fileStream.on("finish",() => 
                 {
                     
-                 
-                    console.log(`Download of ${fileName} Complete!`)
-                    fileStream.close(resolve);
-                   
+                 resolve('HelloI have finished downloading')
+    
+                  
+              fileStream.close(); 
+       
                 });
             
             
@@ -46,6 +53,8 @@ energize(fileName) {
             {
             console.log("error downloading file");
             console.error(err);
+            mailError(err);
+
             
             });
 
@@ -53,7 +62,6 @@ energize(fileName) {
 
 
     } 
-
 
     export default energize;
 /* 
