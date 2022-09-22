@@ -35,10 +35,11 @@ fs.writeFileSync('pastItems.json', data);
  console.log("STATUS LIST _____________");
  console.log(statusList);
 
- if (statusList.length != 0 || applicationList.length != 0 ){
- console.log("Emailing...");
  fs.copyFileSync("./yesterdays-list.json", `./history/${date}.json`);
  fs.copyFileSync("./todays-list.json", "./yesterdays-list.json");
+ if (statusList.length != 0 || applicationList.length != 0 ){
+ console.log("Emailing...");
+
  mailer.mail(applicationList,statusList).catch(err => {
 
     mailer.mailError(err);
