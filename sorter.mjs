@@ -1,12 +1,3 @@
-//MODULE SYNOPSIS
-/* 
-1. Takes todays list and eliminates most of the entries on the list based on postal code. Which is a crude narrowing of the list. Just to remove obvious entries.
-2. Maps easier to read objects onto the list.
-3. Compares todays list to yesterdays list and eliminates any entries from the list that are contained in both. newList now only contains
-new entries.
-4. Asks an API for longitude and latitude of every item on the refined list
-5. Checks that the coordinates of a list item falls within the geojson shape of torontos ward 4 and eliminates it from the list if not.
- */
 import fetch from "node-fetch";
 import * as d3 from "d3-geo";
 import geoWard from "./geoward4.json" assert { type: "json" };
