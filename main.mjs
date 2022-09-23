@@ -3,136 +3,59 @@ import * as mailer from "./mailer.mjs";
 import * as sorter from "./sorter.mjs";
 import moment from "moment";
 import fs from "fs";
-import pastItems from "./pastItems.json" assert {type:"json"};
+import pastItems from "./pastItems.json" assert { type: "json" };
 
+let date =
+  moment().format("D") + moment().format("MMM") + moment().format("YYYY");
 
-
-let date = moment().format("D") + moment().format("MMM") + moment().format("YYYY");
-
-
-energize("todays-list").then(() => { sorter.sort().then( listArray => {
-    console.log('finished sorting')
+energize("todays-list").then(() => {
+  sorter.sort().then((listArray) => {
+    console.log("finished sorting");
     const applicationList = listArray[0];
     const statusList = listArray[1];
 
- //Updating the status of items from pastList with their current status. 
-    statusList.forEach( statusItem => {
-        pastItems.find( pastItem => statusItem.APPLICATION_NUMBER == pastItem.APPLICATION_NUMBER ).STATUS = statusItem.STATUS;
-    })
+    //Updating the status of items from pastList with their current status.
+    statusList.forEach((statusItem) => {
+      pastItems.find(
+        (pastItem) =>
+          statusItem.APPLICATION_NUMBER == pastItem.APPLICATION_NUMBER
+      ).STATUS = statusItem.STATUS;
+    });
 
     //Adding items from application list to the pastItems List
-applicationList.forEach(item => {
-pastItems.push(item);
-});
+    applicationList.forEach((item) => {
+      pastItems.push(item);
+    });
 
     let data = JSON.stringify(pastItems);
-fs.writeFileSync('pastItems.json', data);
+    fs.writeFileSync("pastItems.json", data);
 
+    console.log("APPLICATIONS LIST _____________");
+    console.log(applicationList);
 
- console.log("APPLICATIONS LIST _____________");
- console.log(applicationList);
+    console.log("STATUS LIST _____________");
+    console.log(statusList);
 
- console.log("STATUS LIST _____________");
- console.log(statusList);
+    // Transfering todays list to yesterdays list.
+    fs.copyFileSync("./yesterdays-list.json", `./history/${date}.json`);
+    fs.copyFileSync("./todays-list.json", "./yesterdays-list.json");
 
- fs.copyFileSync("./yesterdays-list.json", `./history/${date}.json`);
- fs.copyFileSync("./todays-list.json", "./yesterdays-list.json");
- if (statusList.length != 0 || applicationList.length != 0 ){
- console.log("Emailing...");
+    if (statusList.length != 0 || applicationList.length != 0) {
+      console.log("Emailing...");
 
- mailer.mail(applicationList,statusList).catch(err => {
-
-    mailer.mailError(err);
-    console.log(err);
-    
-    
-    }).catch(err => {
-
-        mailer.mailError(err);
-        console.log(err);
-        
-        
-        });} else { console.log('There are no new entries to email')}
- } );})
-
-
-/* fs.unlink('./yesterdays-list.json', (err) => {
-    if (err) {
-        throw err;
-    }
-
-    console.log("File is deleted.");
-});
-
-fs.copyFileSync("./todays-list.json", `./yesterdays-list.json`) 
- */
-
-
-
-/* 
-
-export function
-mainFunction()
-{
- 
-
-
-    const downloaded = await download.energize('todays-list').catch(err => {
-
-        mailer.mailError(err);
-        console.log(err);
-        
-        
-        });
- */
-
-/* 
-    const sort = sorter.sort().then( listArray => {
-        console.log('finished sorting')
-        const applicationList = listArray[0];
-        const statusList = listArray[1];
-
-     //Updating the status of items from pastList with their current status. 
-        statusList.forEach( statusItem => {
-            pastItems.find( pastItem => statusItem.APPLICATION_NUMBER == pastItem.APPLICATION_NUMBER ).STATUS = statusItem.STATUS;
+      mailer
+        .mail(applicationList, statusList)
+        .catch((err) => {
+          mailer.mailError(err);
+          console.log(err);
         })
-
-        //Adding items from application list to the pastItems List
-applicationList.forEach(item => {
-    pastItems.push(item);
+        .catch((err) => {
+          mailer.mailError(err);
+          console.log(err);
+        });
+    } else {
+      console.log("There are no new entries to email");
+    }
+  });
 });
-
-        let data = JSON.stringify(pastItems);
-fs.writeFileSync('pastItems.json', data);
-
-     console.log("APPLICATIONS LIST _____________");
-     console.log(applicationList);
-
-     console.log("STATUS LIST _____________");
-     console.log(statusList);
-
-     if (statusList.length != 0 || applicationList.length != 0 ){
-     console.log("Emailing...");
-     mailer.mail(applicationList,statusList).catch(err => {
-
-        mailer.mailError(err);
-        console.log(err);
-        
-        
-        }).catch(err => {
-
-            mailer.mailError(err);
-            console.log(err);
-            
-            
-            });} else { console.log('There are no new entries to email')}
-     } );
-
- 
-
-};
-
- */
-
-
 
