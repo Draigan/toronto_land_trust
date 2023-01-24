@@ -1,0 +1,400 @@
+[
+    {
+        "APPLICATION_NUMBER": "22 190730 S45 04 TLAB",
+        "DESCRIPTION": "To alter the existing three-storey detached dwelling by removing the existing rear and side additions and constructing: a complete third storey addition, a rear three-storey addition; front and rear third storey terraces; and front and rear basement walkouts. This alteration will increase the number of dwelling units from 4 units to 6 units (1 primary unit and 5 secondary suites). Also, to construct a one-storey ancillary building (detached garage) for a total of 4 parking spaces (2 of which will be below-grade) and a two-storey ancillary building (laneway suite) with one surface parking space, in the rear yard, abutting the laneway.",
+        "ID": 16619692,
+        "POSTAL": "M6K",
+        "STATUS": "Hearing Scheduled",
+        "APPLICATION_TYPE": "TLAB",
+        "DATE_SUBMITTED": "2022-08-15",
+        "REFERENCE_FILE_NUMBER": "22-190730",
+        "HEARING_DATE": null,
+        "STREET_NAME": "WILSON PARK",
+        "STREET_NUM": "44",
+        "STREET_TYPE": "RD",
+        "LON": "-79.44214174960734",
+        "LAT": "43.6378782",
+        "COORDINATES": [
+            "-79.44214174960734",
+            "43.6378782"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "22 157608 STE 04 MV",
+        "DESCRIPTION": "To construct four additional residential units (for a total of eight residential units) within this existing two-storey apartment building.",
+        "ID": 16622744,
+        "POSTAL": "M6K",
+        "STATUS": "Closed",
+        "APPLICATION_TYPE": "MV",
+        "DATE_SUBMITTED": "2022-06-06",
+        "REFERENCE_FILE_NUMBER": "A0674/22TEY",
+        "HEARING_DATE": "2022-09-14",
+        "STREET_NAME": "DUNN",
+        "STREET_NUM": "200",
+        "STREET_TYPE": "AVE",
+        "LON": "-79.43378505",
+        "LAT": "43.6386147625",
+        "COORDINATES": [
+            "-79.43378505",
+            "43.6386147625"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "08 162448 000 00 MV",
+        "DESCRIPTION": "To renovate the existing apartment, including a partial basement excavation and a fourth floor addition with a roof garden for 29 dwelling units of alternative housing.",
+        "ID": 16629768,
+        "POSTAL": "M6K",
+        "STATUS": "Closed",
+        "APPLICATION_TYPE": "MV",
+        "DATE_SUBMITTED": "2008-05-26",
+        "REFERENCE_FILE_NUMBER": "A0680/08TEY",
+        "HEARING_DATE": "2008-08-13",
+        "STREET_NAME": "DOWLING",
+        "STREET_NUM": "194",
+        "STREET_TYPE": "AVE",
+        "LON": "-79.4399157",
+        "LAT": "43.6397859",
+        "COORDINATES": [
+            "-79.4399157",
+            "43.6397859"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "22 141447 STE 04 MV",
+        "DESCRIPTION": "To alter the existing two-and-one-half-storey detached dwelling by constructing a rear third storey addition.",
+        "ID": 18127287,
+        "POSTAL": "M6K",
+        "STATUS": "Closed",
+        "APPLICATION_TYPE": "MV",
+        "DATE_SUBMITTED": "2022-05-03",
+        "REFERENCE_FILE_NUMBER": "A0531/22TEY",
+        "HEARING_DATE": "2022-09-07",
+        "STREET_NAME": "DOWLING",
+        "STREET_NUM": "147",
+        "STREET_TYPE": "AVE",
+        "LON": "-79.43866479632743",
+        "LAT": "43.63755295",
+        "COORDINATES": [
+            "-79.43866479632743",
+            "43.63755295"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "14 133020 000 00 MV",
+        "DESCRIPTION": "To alter the existing seven-storey, 66 unit apartment building by converting storage area into an additional unit for a total of 67 dwelling units. ",
+        "ID": 24328506,
+        "POSTAL": "M6K",
+        "STATUS": "Closed",
+        "APPLICATION_TYPE": "MV",
+        "DATE_SUBMITTED": "2014-03-25",
+        "REFERENCE_FILE_NUMBER": "A0302/14TEY",
+        "HEARING_DATE": "2014-05-27",
+        "STREET_NAME": "DOWLING",
+        "STREET_NUM": "150",
+        "STREET_TYPE": "AVE",
+        "LON": "-79.43947925550994",
+        "LAT": "43.6377951",
+        "COORDINATES": [
+            "-79.43947925550994",
+            "43.6377951"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "22 190730 S45 04 TLAB",
+        "DESCRIPTION": "To alter the existing three-storey detached dwelling by removing the existing rear and side additions and constructing: a complete third storey addition, a rear three-storey addition; front and rear third storey terraces; and front and rear basement walkouts. This alteration will increase the number of dwelling units from 4 units to 6 units (1 primary unit and 5 secondary suites). Also, to construct a one-storey ancillary building (detached garage) for a total of 4 parking spaces (2 of which will be below-grade) and a two-storey ancillary building (laneway suite) with one surface parking space, in the rear yard, abutting the laneway.",
+        "ID": 24299668,
+        "POSTAL": "M6K",
+        "STATUS": "Hearing Scheduled",
+        "APPLICATION_TYPE": "TLAB",
+        "DATE_SUBMITTED": "2022-08-15",
+        "REFERENCE_FILE_NUMBER": "22-190730",
+        "HEARING_DATE": null,
+        "STREET_NAME": "WILSON PARK",
+        "STREET_NUM": "44",
+        "STREET_TYPE": "RD",
+        "LON": "-79.44214174960734",
+        "LAT": "43.6378782",
+        "COORDINATES": [
+            "-79.44214174960734",
+            "43.6378782"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "22 141447 STE 04 MV",
+        "DESCRIPTION": "To alter the existing two-and-one-half-storey detached dwelling by constructing a rear third storey addition.",
+        "ID": 24367802,
+        "POSTAL": "M6K",
+        "STATUS": "Closed",
+        "APPLICATION_TYPE": "MV",
+        "DATE_SUBMITTED": "2022-05-03",
+        "REFERENCE_FILE_NUMBER": "A0531/22TEY",
+        "HEARING_DATE": "2022-09-07",
+        "STREET_NAME": "DOWLING",
+        "STREET_NUM": "147",
+        "STREET_TYPE": "AVE",
+        "LON": "-79.43866479632743",
+        "LAT": "43.63755295",
+        "COORDINATES": [
+            "-79.43866479632743",
+            "43.63755295"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "21 232170 STE 04 CO",
+        "DESCRIPTION": "Section 57(1) of the Planning Act allows the assignment of authority to the Secretary-Treasurer, Committee of Adjustment or his/her designate to approve a Validation of Title.",
+        "ID": 24372735,
+        "POSTAL": "M6K",
+        "STATUS": "Closed",
+        "APPLICATION_TYPE": "CO",
+        "DATE_SUBMITTED": "2021-10-29",
+        "REFERENCE_FILE_NUMBER": "B0101/21TEY",
+        "HEARING_DATE": "2022-11-06",
+        "STREET_NAME": "DOWLING",
+        "STREET_NUM": "183",
+        "STREET_TYPE": "AVE",
+        "LON": "-79.43936333047355",
+        "LAT": "43.6394133",
+        "COORDINATES": [
+            "-79.43936333047355",
+            "43.6394133"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "14 133020 000 00 MV",
+        "DESCRIPTION": "To alter the existing seven-storey, 66 unit apartment building by converting storage area into an additional unit for a total of 67 dwelling units. ",
+        "POSTAL": "M6K",
+        "STATUS": "xchanged",
+        "APPLICATION_TYPE": "MV",
+        "DATE_SUBMITTED": "2014-03-25",
+        "REFERENCE_FILE_NUMBER": "A0302/14TEY",
+        "HEARING_DATE": "2014-05-27",
+        "STREET_NAME": "DOWLING",
+        "STREET_NUM": "150",
+        "STREET_TYPE": "AVE",
+        "LON": "-79.43947925550994",
+        "LAT": "43.6377951",
+        "COORDINATES": [
+            "-79.43947925550994",
+            "43.6377951"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "22 190730 S45 04 TLAB",
+        "DESCRIPTION": "To alter the existing three-storey detached dwelling by removing the existing rear and side additions and constructing: a complete third storey addition, a rear three-storey addition; front and rear third storey terraces; and front and rear basement walkouts. This alteration will increase the number of dwelling units from 4 units to 6 units (1 primary unit and 5 secondary suites). Also, to construct a one-storey ancillary building (detached garage) for a total of 4 parking spaces (2 of which will be below-grade) and a two-storey ancillary building (laneway suite) with one surface parking space, in the rear yard, abutting the laneway.",
+        "POSTAL": "M6K",
+        "STATUS": "Hearing Scheduled",
+        "APPLICATION_TYPE": "TLAB",
+        "DATE_SUBMITTED": "2022-08-15",
+        "REFERENCE_FILE_NUMBER": "22-190730",
+        "HEARING_DATE": null,
+        "STREET_NAME": "WILSON PARK",
+        "STREET_NUM": "44",
+        "STREET_TYPE": "RD",
+        "LON": "-79.44214174960734",
+        "LAT": "43.6378782",
+        "COORDINATES": [
+            "-79.44214174960734",
+            "43.6378782"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "22 190730 S45 04 TLAB",
+        "DESCRIPTION": "To alter the existing three-storey detached dwelling by removing the existing rear and side additions and constructing: a complete third storey addition, a rear three-storey addition; front and rear third storey terraces; and front and rear basement walkouts. This alteration will increase the number of dwelling units from 4 units to 6 units (1 primary unit and 5 secondary suites). Also, to construct a one-storey ancillary building (detached garage) for a total of 4 parking spaces (2 of which will be below-grade) and a two-storey ancillary building (laneway suite) with one surface parking space, in the rear yard, abutting the laneway.",
+        "ID": 24380283,
+        "POSTAL": "M6K",
+        "STATUS": "Hearing Scheduled",
+        "APPLICATION_TYPE": "TLAB",
+        "DATE_SUBMITTED": "2022-08-15",
+        "REFERENCE_FILE_NUMBER": "22-190730",
+        "HEARING_DATE": null,
+        "STREET_NAME": "WILSON PARK",
+        "STREET_NUM": "44",
+        "STREET_TYPE": "RD",
+        "LON": "-79.44214174960734",
+        "LAT": "43.6378782",
+        "COORDINATES": [
+            "-79.44214174960734",
+            "43.6378782"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "08 148757 000 00 MV",
+        "DESCRIPTION": "To enclose the porch area of the Coach House.",
+        "ID": 24382429,
+        "POSTAL": "M6K",
+        "STATUS": "Closed",
+        "APPLICATION_TYPE": "MV",
+        "DATE_SUBMITTED": "2008-04-18",
+        "REFERENCE_FILE_NUMBER": "A0585/08TEY",
+        "HEARING_DATE": "2008-06-25",
+        "STREET_NAME": "BEATY",
+        "STREET_NUM": "39",
+        "STREET_TYPE": "AVE",
+        "LON": "-79.44009145668663",
+        "LAT": "43.6377596",
+        "COORDINATES": [
+            "-79.44009145668663",
+            "43.6377596"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "22 190730 S45 04 TLAB",
+        "DESCRIPTION": "To alter the existing three-storey detached dwelling by removing the existing rear and side additions and constructing: a complete third storey addition, a rear three-storey addition; front and rear third storey terraces; and front and rear basement walkouts. This alteration will increase the number of dwelling units from 4 units to 6 units (1 primary unit and 5 secondary suites). Also, to construct a one-storey ancillary building (detached garage) for a total of 4 parking spaces (2 of which will be below-grade) and a two-storey ancillary building (laneway suite) with one surface parking space, in the rear yard, abutting the laneway.",
+        "ID": 24380283,
+        "POSTAL": "M6K",
+        "STATUS": "Hearing Scheduled",
+        "APPLICATION_TYPE": "TLAB",
+        "DATE_SUBMITTED": "2022-08-15",
+        "REFERENCE_FILE_NUMBER": "22-190730",
+        "HEARING_DATE": null,
+        "STREET_NAME": "WILSON PARK",
+        "STREET_NUM": "44",
+        "STREET_TYPE": "RD",
+        "LON": "-79.44214174960734",
+        "LAT": "43.6378782",
+        "COORDINATES": [
+            "-79.44214174960734",
+            "43.6378782"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "08 148757 000 00 MV",
+        "DESCRIPTION": "To enclose the porch area of the Coach House.",
+        "ID": 24382429,
+        "POSTAL": "M6K",
+        "STATUS": "Closed",
+        "APPLICATION_TYPE": "MV",
+        "DATE_SUBMITTED": "2008-04-18",
+        "REFERENCE_FILE_NUMBER": "A0585/08TEY",
+        "HEARING_DATE": "2008-06-25",
+        "STREET_NAME": "BEATY",
+        "STREET_NUM": "39",
+        "STREET_TYPE": "AVE",
+        "LON": "-79.44009145668663",
+        "LAT": "43.6377596",
+        "COORDINATES": [
+            "-79.44009145668663",
+            "43.6377596"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "22 190730 S45 04 TLAB",
+        "DESCRIPTION": "To alter the existing three-storey detached dwelling by removing the existing rear and side additions and constructing: a complete third storey addition, a rear three-storey addition; front and rear third storey terraces; and front and rear basement walkouts. This alteration will increase the number of dwelling units from 4 units to 6 units (1 primary unit and 5 secondary suites). Also, to construct a one-storey ancillary building (detached garage) for a total of 4 parking spaces (2 of which will be below-grade) and a two-storey ancillary building (laneway suite) with one surface parking space, in the rear yard, abutting the laneway.",
+        "ID": 24380283,
+        "POSTAL": "M6K",
+        "STATUS": "Hearing Scheduled",
+        "APPLICATION_TYPE": "TLAB",
+        "DATE_SUBMITTED": "2022-08-15",
+        "REFERENCE_FILE_NUMBER": "22-190730",
+        "HEARING_DATE": null,
+        "STREET_NAME": "WILSON PARK",
+        "STREET_NUM": "44",
+        "STREET_TYPE": "RD",
+        "LON": "-79.44214174960734",
+        "LAT": "43.6378782",
+        "COORDINATES": [
+            "-79.44214174960734",
+            "43.6378782"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "08 148757 000 00 MV",
+        "DESCRIPTION": "To enclose the porch area of the Coach House.",
+        "ID": 24382429,
+        "POSTAL": "M6K",
+        "STATUS": "Closed",
+        "APPLICATION_TYPE": "MV",
+        "DATE_SUBMITTED": "2008-04-18",
+        "REFERENCE_FILE_NUMBER": "A0585/08TEY",
+        "HEARING_DATE": "2008-06-25",
+        "STREET_NAME": "BEATY",
+        "STREET_NUM": "39",
+        "STREET_TYPE": "AVE",
+        "LON": "-79.44009145668663",
+        "LAT": "43.6377596",
+        "COORDINATES": [
+            "-79.44009145668663",
+            "43.6377596"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "22 190730 S45 04 TLAB",
+        "DESCRIPTION": "To alter the existing three-storey detached dwelling by removing the existing rear and side additions and constructing: a complete third storey addition, a rear three-storey addition; front and rear third storey terraces; and front and rear basement walkouts. This alteration will increase the number of dwelling units from 4 units to 6 units (1 primary unit and 5 secondary suites). Also, to construct a one-storey ancillary building (detached garage) for a total of 4 parking spaces (2 of which will be below-grade) and a two-storey ancillary building (laneway suite) with one surface parking space, in the rear yard, abutting the laneway.",
+        "ID": 24380283,
+        "POSTAL": "M6K",
+        "STATUS": "Hearing Scheduled",
+        "APPLICATION_TYPE": "TLAB",
+        "DATE_SUBMITTED": "2022-08-15",
+        "REFERENCE_FILE_NUMBER": "22-190730",
+        "HEARING_DATE": null,
+        "STREET_NAME": "WILSON PARK",
+        "STREET_NUM": "44",
+        "STREET_TYPE": "RD",
+        "LON": "-79.44214174960734",
+        "LAT": "43.6378782",
+        "COORDINATES": [
+            "-79.44214174960734",
+            "43.6378782"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "08 148757 000 00 MV",
+        "DESCRIPTION": "To enclose the porch area of the Coach House.",
+        "ID": 24382429,
+        "POSTAL": "M6K",
+        "STATUS": "Closed",
+        "APPLICATION_TYPE": "MV",
+        "DATE_SUBMITTED": "2008-04-18",
+        "REFERENCE_FILE_NUMBER": "A0585/08TEY",
+        "HEARING_DATE": "2008-06-25",
+        "STREET_NAME": "BEATY",
+        "STREET_NUM": "39",
+        "STREET_TYPE": "AVE",
+        "LON": "-79.44009145668663",
+        "LAT": "43.6377596",
+        "COORDINATES": [
+            "-79.44009145668663",
+            "43.6377596"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "22 190730 S45 04 TLAB",
+        "DESCRIPTION": "To alter the existing three-storey detached dwelling by removing the existing rear and side additions and constructing: a complete third storey addition, a rear three-storey addition; front and rear third storey terraces; and front and rear basement walkouts. This alteration will increase the number of dwelling units from 4 units to 6 units (1 primary unit and 5 secondary suites). Also, to construct a one-storey ancillary building (detached garage) for a total of 4 parking spaces (2 of which will be below-grade) and a two-storey ancillary building (laneway suite) with one surface parking space, in the rear yard, abutting the laneway.",
+        "ID": 24380283,
+        "POSTAL": "M6K",
+        "STATUS": "Hearing Scheduled",
+        "APPLICATION_TYPE": "TLAB",
+        "DATE_SUBMITTED": "2022-08-15",
+        "REFERENCE_FILE_NUMBER": "22-190730",
+        "HEARING_DATE": null,
+        "STREET_NAME": "WILSON PARK",
+        "STREET_NUM": "44",
+        "STREET_TYPE": "RD",
+        "LON": "-79.44214174960734",
+        "LAT": "43.6378782",
+        "COORDINATES": [
+            "-79.44214174960734",
+            "43.6378782"
+        ]
+    },
+    {
+        "APPLICATION_NUMBER": "08 148757 000 00 MV",
+        "DESCRIPTION": "To enclose the porch area of the Coach House.",
+        "ID": 24382429,
+        "POSTAL": "M6K",
+        "STATUS": "Closed",
+        "APPLICATION_TYPE": "MV",
+        "DATE_SUBMITTED": "2008-04-18",
+        "REFERENCE_FILE_NUMBER": "A0585/08TEY",
+        "HEARING_DATE": "2008-06-25",
+        "STREET_NAME": "BEATY",
+        "STREET_NUM": "39",
+        "STREET_TYPE": "AVE",
+        "LON": "-79.44009145668663",
+        "LAT": "43.6377596",
+        "COORDINATES": [
+            "-79.44009145668663",
+            "43.6377596"
+        ]
+    }
+]
