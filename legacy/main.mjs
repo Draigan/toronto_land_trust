@@ -1,9 +1,9 @@
-import energize from "./download.mjs";
-import * as mailer from "./mailer.mjs";
+import * as myfs from "./filesystem.mjs";
+// import * as mailer from "./mailer.mjs";
 import * as sorter from "./sorter.mjs";
 import moment from "moment";
 import fs from "fs";
-import pastItems from "./pastItems.json" assert { type: "json" };
+import pastItems from "./past-items.json" assert { type: "json" };
 
 let date =
   moment().format("D") + moment().format("MMM") + moment().format("YYYY");
@@ -11,7 +11,19 @@ let date =
 //fs.renameSync("./yesterdays-list.json", `./history/${date}.json`);
 //fs.renameSync("./todays-list.json", "./yesterdays-list.json");
 
-energize("todays-list").then(() => {
+
+async function main() {
+  const download = await energize("todays-list.json");
+  const log = console.log(download)
+  // const sort = await sorter.sort();
+  // const applicationList = listArray[0];
+  // const statusList = listArray[1];
+  // console.log(applicationList);
+
+}
+main();
+
+energize("todays-list.json").then(() => {
   sorter.sort().then((listArray) => {
     console.log("finished sorting");
     const applicationList = listArray[0];
@@ -30,6 +42,8 @@ energize("todays-list").then(() => {
       pastItems.push(item);
     });
 
+    const applicationList = listArray[0];
+    const statusList = listArray[1];
     let data = JSON.stringify(pastItems);
     fs.writeFileSync("pastItems.json", data);
 
