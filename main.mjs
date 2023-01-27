@@ -13,7 +13,7 @@ function main() {
       console.log("STATUS LIST __________________________________");
       console.log(data[1]);
       mailer.sendEmail(data[0], data[1]);
-      myfs.renameAndCopyLists();
+      // myfs.renameAndCopyLists();
     })
 }
 

@@ -102,21 +102,22 @@ export function sort(data1, data2) {
           .then((response) => response.json())
           .then((json) => {
             //Adding lon and lat to my list item
-
-            newApplicationList[index].LON = json[0].lon;
-            newApplicationList[index].LAT = json[0].lat;
-            newApplicationList[index].COORDINATES.push(
-              json[0].lon,
-              json[0].lat
-            );
+            if (json[0] != undefined) {
+              newApplicationList[index].LON = json[0].lon;
+              newApplicationList[index].LAT = json[0].lat;
+              newApplicationList[index].COORDINATES.push(
+                json[0].lon,
+                json[0].lat
+              );
+            } else {
+              console.log("An API request for coordinates failed. This is due to the address being incorrect in some way. Here is the item:");
+              console.log(newApplicationList[index]);
+              newApplicationList[index].Note = "THIS ITEM IS NOT CONFIRMED TO BE IN WARD 4 BUT IT DOES HAVE A POSTAL CODE THAT MIGHT BE OF RELEVANCE"
+            }
 
             resolve();
           })
-          .catch(() => {
-            mailer.mailError("There was an error with the API");
-            console.log("API ERROR}")
-            reject();
-          });
+          .catch(reject);
       });
     };
 
@@ -132,8 +133,14 @@ export function sort(data1, data2) {
     setTimeout(() => {
       Promise.all(promiseArray).then(() => {
         for (let i = 0; i < newApplicationList.length; i++) {
-          //checks to see if listings long and lat falls within ward4's geojson
+
+          // Null Check
+          if (newApplicationList[i].LON == undefined) {
+            continue;
+          }
+
           if (
+            //checks to see if listings long and lat falls within ward4's geojson
             d3.geoContains(geoWard, newApplicationList[i].COORDINATES) == false
           ) {
             newApplicationList.splice(i, 1);
