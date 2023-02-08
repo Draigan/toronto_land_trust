@@ -5,32 +5,24 @@ import geoWard from "./data/geoward4.json" assert { type: "json" };
 import pastItems from "./data/past-items.json" assert { type: "json" };
 
 export function sort(data1, data2) {
-  const todaysList = data1
-  const yesterdaysList = data2
 
-  return new Promise((res, rej) => {
-    if (false == true) {
-      rej;
-    }
+  const todaysList = data1;
+  const yesterdaysList = data2;
 
-    const postalCode = [
-      "M6K",
-      "M6H",
-      "M6P",
-      "M6R",
-      "M6J",
-      "M5X",
-      "M5J",
-      "M5K",
-      "M6L",
-      "M3C",
-      "M5H",
-    ];
+  const todaysTotalNewEntries = todaysList.length - yesterdaysList.length;
+  const newEntries = todaysList.slice(-todaysTotalNewEntries);
+  console.log("todays list size:", todaysList.length);
+  console.log("yesterdays list size:", yesterdaysList.length);
+  console.log("Total new entries for today:", todaysTotalNewEntries);
+  if (todaysTotalNewEntries == 0) return console.log("There is no work to be done today");
 
-    const oldList = cleanUpList(yesterdaysList);
-    const newApplicationList = cleanUpList(todaysList);
-    const newStatusList = cleanUpList(todaysList);
-    const refinedNewStatusList = [];
+
+  return new Promise((res) => {
+
+    const postalCode = ["M6K", "M6H", "M6P", "M6R", "M6J", "M5X", "M5J", "M5K", "M6L", "M3C", "M5H"];
+
+    const failedRequests = [];
+    const newApplicationList = cleanUpList(newEntries);
 
     function cleanUpList(list) {
       return list.filter((item) => {
@@ -57,7 +49,7 @@ export function sort(data1, data2) {
 
             STREET_NAME: item.STREET_NAME,
             STREET_NUM: item.STREET_NUM,
-            STREET_TYPE: item.STREET_TYPE,
+            STREET_TYPE: item.STREET_TYPEd,
             LON: null,
             LAT: null,
             COORDINATES: [],
@@ -65,36 +57,24 @@ export function sort(data1, data2) {
         });
     }
 
-    function findChangedStatus() {
+    function statusChanges() {
+      const refinedNewStatusList = [];
+      const newStatusList = cleanUpList(todaysList);
       for (let i = 0; i < pastItems.length; i++) {
         for (let j = newStatusList.length - 1; j > 0; j--) {
-          if (
-            pastItems[i].APPLICATION_NUMBER ==
-            newStatusList[j].APPLICATION_NUMBER
-          ) {
+          if (pastItems[i].APPLICATION_NUMBER == newStatusList[j].APPLICATION_NUMBER) {
+
             if (pastItems[i].STATUS != newStatusList[j].STATUS) {
+
               refinedNewStatusList.push(newStatusList[j]);
 
             }
           }
         }
       }
+      return refinedNewStatusList;
     }
 
-    findChangedStatus();
-
-    function getRidOfCopies(originalList, modifiedList) {
-      for (let i = 0; i < modifiedList.length; i++) {
-        for (let item of originalList) {
-          if (modifiedList[i].APPLICATION_NUMBER == item.APPLICATION_NUMBER) {
-            modifiedList.splice(i, 1);
-          }
-        }
-      }
-    }
-    getRidOfCopies(oldList, newApplicationList);
-
-    const promiseArray = [];
 
     const httpRequest = (url, index) => {
       return new Promise((resolve, reject) => {
@@ -109,10 +89,12 @@ export function sort(data1, data2) {
                 json[0].lon,
                 json[0].lat
               );
+              console.log(`SUCCESS ${newApplicationList.length - index} APPLICATION_NUMBER:${newApplicationList[index].APPLICATION_NUMBER} `);
             } else {
-              console.log("An API request for coordinates failed. This is due to the address being incorrect in some way. Here is the item:");
+              console.log("An API request for coordinates failed. Probably from unknown address format ");
               console.log(newApplicationList[index]);
-              newApplicationList[index].Note = "THIS ITEM IS NOT CONFIRMED TO BE IN WARD 4 BUT IT DOES HAVE A POSTAL CODE THAT MIGHT BE OF RELEVANCE"
+              newApplicationList[index].Note = "May or may not be in ward4"
+              failedRequests.push(newApplicationList[index]);
             }
 
             resolve();
@@ -121,38 +103,51 @@ export function sort(data1, data2) {
       });
     };
 
-    for (let i = 0; i < newApplicationList.length; i++) {
-      let url = `https://nominatim.openstreetmap.org/search?q=${newApplicationList[i].STREET_NUM}+
-      ${newApplicationList[i].STREET_NAME}+${newApplicationList[i].STREET_TYPE},+toronto&format=json`;
+    // Certain address are double addresses and the api doesnt recognize them. So we have to cut those 1 to be a single address. This function will either return the 
+    // cut address or the regular address if it doesnt need to be cut.
+    function changeAddressToFit(address) {
+      // The ones that are messing up the API have a - in them 
+      if (address.includes("-")) {
+        return address.slice(0, address.indexOf("-"));
 
+      } else {
+        return address;
+      }
+    }
+
+    // Running loop to call httpRequest function.  
+    console.log(`\nTHERE ARE ${newApplicationList.length} TOTAL API REQUESTS FOR COORDINATES\n`);
+    const promiseArray = [];
+    for (let i = 0; i < newApplicationList.length; i++) {
+      //  How the API Should look: https://nominatim.openstreetmap.org/search?q=789+DON MILLS+toronto&format=json
+      let url = `https://nominatim.openstreetmap.org/search?q=${changeAddressToFit(newApplicationList[i].STREET_NUM)}+
+      ${newApplicationList[i].STREET_NAME}+toronto&format=json`;
+      // Pushing to array for Promise.all and calling httpRequest with unique url.
       setTimeout(() => {
         promiseArray.push(httpRequest(url, i));
-      }, 3000 * i);
+      }, 1000 * i);
     }
 
     setTimeout(() => {
       Promise.all(promiseArray).then(() => {
-        for (let i = 0; i < newApplicationList.length; i++) {
+        const sortedList = newApplicationList.filter((item) => {
+          return d3.geoContains(geoWard, item.COORDINATES)
+        });
 
-          // Null Check
-          if (newApplicationList[i].LON == undefined) {
-            continue;
-          }
 
-          if (
-            //checks to see if listings long and lat falls within ward4's geojson
-            d3.geoContains(geoWard, newApplicationList[i].COORDINATES) == false
-          ) {
-            newApplicationList.splice(i, 1);
-          }
+        // Stamps of approval...
+        sortedList.forEach((item) => {
+          item.WITHIN_NORTH_WARD = d3.geoContains(geoWard, item.COORDINATES);
+          item.SORTED_ITEM = true;
+        });
+
+        if (failedRequests.length > 0) {
+
+          console.log("FAILED REQUESTS!!!!!", failedRequests);
         }
-
-        let listArray = [];
-        listArray.push(newApplicationList, refinedNewStatusList);
-
-        res(listArray);
+        res([sortedList, statusChanges()]);
       });
-    }, newApplicationList.length * 3001);
+    }, newApplicationList.length * 1001);
   });
 }
 

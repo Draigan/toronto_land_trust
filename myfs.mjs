@@ -8,8 +8,9 @@ const date =
   moment().format("D") + moment().format("MMM") + moment().format("YYYY");
 
 const url =
-  // "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/0aa7e480-9b48-4919-98e0-6af7615b7809/resource/043f9e44-ed62-4b4e-96d8-bdfcea27ec91/download/Development%20Applications%20Data.json";
-  "https://www58.zippyshare.com/d/2pVBnXlf/29628/todays-list.json"
+  "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/0aa7e480-9b48-4919-98e0-6af7615b7809/resource/043f9e44-ed62-4b4e-96d8-bdfcea27ec91/download/Development%20Applications%20Data.json";
+// "https://www58.zippyshare.com/d/2pVBnXlf/29628/tasd-list.json"
+// "https://www58.zippyshare.com/d/2pVBnXlf/29628/todays-list.json"
 export function download(fileName) {
   return new Promise((resolve, reject) => {
     const require = https.get(url, (res) => {
