@@ -1,21 +1,27 @@
 import fetch from "node-fetch";
-import * as mailer from "./mailer.mjs";
+import fs from "fs";
 import * as d3 from "d3-geo";
 import geoWard from "./data/geoward4.json" assert { type: "json" };
-import pastItems from "./data/past-items.json" assert { type: "json" };
 
 export function sort(data1, data2) {
+
 
   const todaysList = data1;
   const yesterdaysList = data2;
 
+  let pastItems = fs.readFileSync('./past-items.json', 'utf8');
+  pastItems = JSON.parse(pastItems);
+
   const todaysTotalNewEntries = todaysList.length - yesterdaysList.length;
   const newEntries = todaysList.slice(-todaysTotalNewEntries);
+
+  let updateEntryCount = 0;
+
   console.log("todays list size:", todaysList.length);
   console.log("yesterdays list size:", yesterdaysList.length);
   console.log("Total new entries for today:", todaysTotalNewEntries);
-  if (todaysTotalNewEntries == 0) return console.log("There is no work to be done today");
 
+  if (todaysTotalNewEntries == 0) return console.log("There is no work to be done today");
 
   return new Promise((res) => {
 
@@ -24,6 +30,7 @@ export function sort(data1, data2) {
     const failedRequests = [];
     const newApplicationList = cleanUpList(newEntries);
 
+    // Filter by postal code and map neater version of the object
     function cleanUpList(list) {
       return list.filter((item) => {
         for (let code of postalCode) {
@@ -57,23 +64,43 @@ export function sort(data1, data2) {
         });
     }
 
-    function statusChanges() {
-      const refinedNewStatusList = [];
-      const newStatusList = cleanUpList(todaysList);
+
+    function finalLog() {
+      console.log(updateEntryCount, "new entries added to the past entries list");
+
+
+    }
+
+    function statusChanges(sortedList) {
+      let matches = [];
+      let statusDifferences = [];
       for (let i = 0; i < pastItems.length; i++) {
-        for (let j = newStatusList.length - 1; j > 0; j--) {
-          if (pastItems[i].APPLICATION_NUMBER == newStatusList[j].APPLICATION_NUMBER) {
-
-            if (pastItems[i].STATUS != newStatusList[j].STATUS) {
-
-              refinedNewStatusList.push(newStatusList[j]);
-
+        for (let j = sortedList.length - 1; j > 0; j--) {
+          if (pastItems[i].APPLICATION_NUMBER == sortedList[j].APPLICATION_NUMBER) {
+            if (pastItems[i].STATUS != sortedList[j].STATUS) {
+              statusDifferences.push(sortedList[j]);
             }
+            matches.push(sortedList[j]);
+            console.log("There is a new entry that is on past entries list. Updating past entries item with new item");
+            pastItems[i] = sortedList[j];
+            updateEntryCount++;
+            j = -1;
           }
+
         }
       }
-      return refinedNewStatusList;
+      sortedList.forEach((sortedItem) => {
+        if (!pastItems.find((pastItem) => sortedItem.APPLICATION_NUMBER == pastItem.APPLICATION_NUMBER)) {
+          pastItems.push(sortedItem);
+          console.log("Added an item that wasn't on the list.")
+        }
+      })
+      fs.writeFileSync("past-items.json", JSON.stringify(pastItems));
+      return matches;
+
     }
+
+
 
 
     const httpRequest = (url, index) => {
@@ -103,8 +130,8 @@ export function sort(data1, data2) {
       });
     };
 
-    // Certain address are double addresses and the api doesnt recognize them. So we have to cut those 1 to be a single address. This function will either return the 
-    // cut address or the regular address if it doesnt need to be cut.
+    // Certain address are double addresses and the api doesnt recognize them. So we have to cut those 1 to be a single address. 
+    // This function will either return the cut address or the regular address if it doesnt need to be cut.
     function changeAddressToFit(address) {
       // The ones that are messing up the API have a - in them 
       if (address.includes("-")) {
@@ -145,7 +172,7 @@ export function sort(data1, data2) {
 
           console.log("FAILED REQUESTS!!!!!", failedRequests);
         }
-        res([sortedList, statusChanges()]);
+        res([sortedList, statusChanges(sortedList), finalLog]);
       });
     }, newApplicationList.length * 1001);
   });
