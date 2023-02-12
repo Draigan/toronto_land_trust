@@ -3,4 +3,4 @@ legacy/
 package.json
 package-lock.json
 .vscode/
-/data
+data/
