@@ -5,7 +5,6 @@ import geoWard from "./data/geoward4.json" assert { type: "json" };
 
 export function sort(data1, data2) {
 
-
   const todaysList = data1;
   const yesterdaysList = data2;
 
@@ -67,8 +66,6 @@ export function sort(data1, data2) {
 
     function finalLog() {
       console.log(updateEntryCount, "new entries added to the past entries list");
-
-
     }
 
     function statusChanges(sortedList) {
